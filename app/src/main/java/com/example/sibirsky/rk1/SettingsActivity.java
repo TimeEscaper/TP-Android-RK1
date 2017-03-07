@@ -27,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             setTopic(Topics.IT);
+            finish();
         }
     };
 
@@ -34,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             setTopic(Topics.AUTO);
-            back();
+            finish();
         }
     };
 
@@ -42,17 +43,11 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             setTopic(Topics.HEALTH);
-            back();
+            finish();
         }
     };
 
     private void setTopic(String topic) {
         Storage.getInstance(this).saveCurrentTopic(topic);
-        back();
-    }
-
-    private void back() {
-        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-        startActivity(intent);
     }
 }
