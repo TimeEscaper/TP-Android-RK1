@@ -22,9 +22,6 @@
         <service
             android:name=".NewsIntentService"
             android:exported="false" />
-        <service
-            android:name=".BackgroundNewsIntentService"
-            android:exported="false"></service>
     </application>
 
 </manifest>

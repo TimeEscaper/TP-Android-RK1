@@ -15,20 +15,19 @@
         android:id="@+id/news_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sample Title"/>
+        android:text="There are still no loaded news"/>
 
     <TextView
         android:id="@+id/news_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="07-03-2017"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/news_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque
-        velit non ligula efficitur iaculis. In accumsan libero id lectus ultricies, at maximus orci pharetra. "/>
+        android:text=""/>
 
     <Button
         android:id="@+id/btn_refresh"
@@ -37,10 +36,11 @@
         android:text="Refresh news" />
 
     <Button
-        android:id="@+id/btn_toggle_background"
+        android:id="@+id/btn_toggle_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Toggle background refresh" />
+
 
     <Button
         android:id="@+id/btn_settings"

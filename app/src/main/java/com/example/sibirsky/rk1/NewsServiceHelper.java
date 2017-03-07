@@ -32,7 +32,8 @@ public class NewsServiceHelper {
 
     private void initBroadcastReceiver(Context context) {
         final IntentFilter filter = new IntentFilter();
-        filter.addAction(NewsIntentService.ACTION_NEWS_REFRESH_CANCEL);
+        filter.addAction(NewsIntentService.ACTION_NEWS_REFRESH_OK);
+        filter.addAction(NewsIntentService.ACTION_NEWS_REFRESH_FAIL);
 
         LocalBroadcastManager.getInstance(context).registerReceiver(new BroadcastReceiver() {
             @Override
@@ -41,7 +42,8 @@ public class NewsServiceHelper {
                 final NewsResultListener listener = listeners.remove(requestId);
 
                 if (listener != null)
-                    listener.onResult();
+                    listener.onResult(intent.getAction().equals(
+                            NewsIntentService.ACTION_NEWS_REFRESH_OK));
             }
         }, filter);
     }
@@ -51,14 +53,14 @@ public class NewsServiceHelper {
         Intent intent = new Intent(context, NewsIntentService.class);
         intent.setAction(NewsIntentService.ACTION_NEWS);
         intent.putExtra(NewsIntentService.EXTRA_REQUEST_ID, idCounter);
-        Log.i(NewsServiceHelper.class.getSimpleName(), "Starting service...");
         context.startService(intent);
+
         return idCounter++;
     }
 
     void removeListener(final int id) { listeners.remove(id); }
 
     public interface NewsResultListener {
-        void onResult();
+        void onResult(boolean success);
     }
 }
