@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.mail.weather.lib.News;
+import ru.mail.weather.lib.Scheduler;
+import ru.mail.weather.lib.Storage;
 
 public class NewsServiceHelper {
 
@@ -56,6 +58,20 @@ public class NewsServiceHelper {
         context.startService(intent);
 
         return idCounter++;
+    }
+
+    public void startBackgroundRefresh(final  Context context) {
+        Intent intent = new Intent(context, NewsIntentService.class);
+        intent.setAction(NewsIntentService.ACTION_NEWS);
+        Storage.getInstance(context).saveIsUpdateInBg(true);
+        Scheduler.getInstance().schedule(context, intent, 30000);
+    }
+
+    public void stopBackgroundRefresh(final Context context) {
+        Intent intent = new Intent(context, NewsIntentService.class);
+        intent.setAction(NewsIntentService.ACTION_NEWS);
+        Storage.getInstance(context).saveIsUpdateInBg(false);
+        Scheduler.getInstance().unschedule(context, intent);
     }
 
     void removeListener(final int id) { listeners.remove(id); }

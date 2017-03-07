@@ -84,12 +84,14 @@ public class MainActivity extends AppCompatActivity implements NewsServiceHelper
         @Override
         public void onClick(View v) {
             if (Storage.getInstance(MainActivity.this).loadIsUpdateInBg()) {
-                Storage.getInstance(MainActivity.this).saveIsUpdateInBg(false);
+                NewsServiceHelper.getInstance(MainActivity.this).stopBackgroundRefresh(
+                        MainActivity.this);
                 Toast.makeText(MainActivity.this, "Refresh in background OFF", Toast.LENGTH_SHORT)
                         .show();
                 btnToggleBg.setText("Start background refresh");
             } else {
-                Storage.getInstance(MainActivity.this).saveIsUpdateInBg(true);
+                NewsServiceHelper.getInstance(MainActivity.this).startBackgroundRefresh(
+                        MainActivity.this);
                 Toast.makeText(MainActivity.this, "Refresh in background is ON", Toast.LENGTH_SHORT)
                         .show();
                 btnToggleBg.setText("Stop background refresh");
