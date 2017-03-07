@@ -64,7 +64,7 @@ public class NewsServiceHelper {
         Intent intent = new Intent(context, NewsIntentService.class);
         intent.setAction(NewsIntentService.ACTION_NEWS);
         Storage.getInstance(context).saveIsUpdateInBg(true);
-        Scheduler.getInstance().schedule(context, intent, 30000);
+        Scheduler.getInstance().schedule(context, intent, 3000);
     }
 
     public void stopBackgroundRefresh(final Context context) {
