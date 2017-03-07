@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sibirsky.rk1">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +21,9 @@
 
         <service
             android:name=".NewsIntentService"
+            android:exported="false" />
+        <service
+            android:name=".BackgroundNewsIntentService"
             android:exported="false"></service>
     </application>
 
