@@ -11,11 +11,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sibirsky.rk1.SettingsActivity">
 
-    <Spinner
-        android:id="@+id/spn_categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </Spinner>
+    <Button
+        android:id="@+id/btn_it"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set category IT" />
+
+    <Button
+        android:id="@+id/btn_auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set category Auto" />
+
+    <Button
+        android:id="@+id/btn_health"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set category Health" />
 
 </LinearLayout>

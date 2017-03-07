@@ -3,6 +3,8 @@ package com.example.sibirsky.rk1;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -16,14 +18,20 @@ public class NewsProcessor {
 
     public static void refreshNews(Context context) {
         News news;
-        String topic = Storage.getInstance(context).loadCurrentTopic();
-        if (topic == null) {
+        Storage storage = Storage.getInstance(context);
+        String topic = storage.loadCurrentTopic();
+        if (TextUtils.isEmpty(topic)) {
             topic = Topics.IT;
-            Storage.getInstance(context).saveCurrentTopic(topic);
+            storage.saveCurrentTopic(topic);
         }
         try {
+            Log.i(NewsProcessor.class.getSimpleName(), "Topic: " + topic);
             news = new NewsLoader().loadNews(topic);
-        } catch (IOException e) { return; }
-        Storage.getInstance(context).saveNews(news);
+            Log.i(NewsProcessor.class.getSimpleName(), news.getTitle());
+        } catch (IOException e) {
+            Log.i(NewsProcessor.class.getSimpleName(), e.getMessage());
+            return;
+        }
+        storage.saveNews(news);
     }
 }
